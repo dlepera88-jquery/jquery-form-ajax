@@ -40,6 +40,7 @@ $('#meu-form').formAjax({
 
 ### func_depois
 function default null
+
 Função a ser executada após o submit do formulário. Recebe como parâmetro o retorno do submit, possibilitando o tratamento e exibição do retorno. Não precisa retornar nada.
 
 ```

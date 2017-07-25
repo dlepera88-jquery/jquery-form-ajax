@@ -196,10 +196,12 @@
                 contentType: qtde_upload > 0 ? false : 'application/x-www-form-urlencoded',
                 success: function (retorno) {
                     if (typeof configs.func_depois === 'function') {
-                        configs.func_depois.apply(retorno);
+                        return configs.func_depois.apply(this, arguments);
                     } else {
                         console.warn('[Plugin $.fn.formAjax] Considere utilizar o plugin $.mostrarMsg para melhorar a experiência do usuário ao receber a resposta do submit.');
                         console.log(retorno);
+                        
+                        return true;
                     } // Fim if ... else
                 }
             });

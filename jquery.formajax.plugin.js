@@ -28,8 +28,6 @@
  * SOFTWARE.
  */
 
-/* jshint unused:false */
-
  // Verificar se o jQuery foi inicializado
  if (jQuery === undefined) {
      console.warn('[Plugin $.fn.formAjax] O jQuery ainda não foi inciado.\nPara utilizar esse plugin é necessário inicializar o jQuery antes.');
@@ -302,7 +300,7 @@
                  * @type {Function}
                  */
                 func_antes: null,
-                
+
                 /**
                  * Função a ser executada após o submit. Ela receberá o retorno do
                  * submit como parâmetro

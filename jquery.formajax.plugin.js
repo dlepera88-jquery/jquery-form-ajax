@@ -195,12 +195,14 @@
                 processData: qtde_upload === 0,
                 contentType: qtde_upload > 0 ? false : 'application/x-www-form-urlencoded',
                 success: function (retorno) {
+                    retorno = fForm.tratarResposta(retorno);
+
                     if (typeof configs.func_depois === 'function') {
-                        return configs.func_depois.apply(this, arguments);
+                        return configs.func_depois.apply(this, [retorno]);
                     } else {
                         console.warn('[Plugin $.fn.formAjax] Considere utilizar o plugin $.mostrarMsg para melhorar a experiência do usuário ao receber a resposta do submit.');
                         console.log(retorno);
-                        
+
                         return true;
                     } // Fim if ... else
                 }
@@ -220,7 +222,29 @@
             return condicao ? campo.setCustomValidity(mensagem)
                 : !campo.validity.valid && campo.validationMessage === mensagem ? campo.setCustomValidity('')
                 : null;
-        } // Fim function Validacao(consicao, campo, mensagem)
+        }, // Fim function validarCampo
+
+
+        /**
+    	 * Função que será utilizada para tratar a resposta
+    	 * @param {string} retorno Resposta do servidor após o envio da requisição
+    	 * @returns {*}
+    	 */
+    	tratarResposta: function (retorno) {
+    		// Remover espaços em branco
+    		retorno = retorno.trim();
+
+    		// Verificar se a resposta é um conteúdo JSON
+    		if (/^[?\[{]{1,}(.+)[}\]{1,}]?$/.test(retorno)) {
+    			if (!/^\[/.test(retorno)) {
+                    retorno = retorno.substring(retorno.lastIndexOf('{'));
+                } // Fim if
+
+                retorno = $.parseJSON(retorno);
+    		} // Fim if
+
+    		return retorno;
+    	} // Fim function tratarResposta
     };
 
 

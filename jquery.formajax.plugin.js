@@ -1,6 +1,6 @@
 /** @preserve
  * jquery.formajax.plugin.js
- * @version: v1.17.07
+ * @version: v1.17.07-r1
  * @author: Diego Lepera
  *
  * Created by Diego Lepera on 2017-07-20. Please report any bug at

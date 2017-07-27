@@ -30,6 +30,20 @@ function default null
 
 Função a ser executada antes do submit do form. Ela simula o comportamento do antigo evento beforesubmit. Se ela retornar false, interrompe o submit do formulário.
 
+Obs: Essa função recebe o DOM do seu formulário como parâmetro.
+
+Exemplo de função 'func_antes':
+```
+function (form) {
+    /* Aqui eu faço o que eu quiser com o DOM do form e / ou aplico a lógica que eu precisar */
+
+    // Obrigatóriamente denho que retornar boolean:
+    // true: procede com o submit
+    // false: interrompe o evento
+    return true/false;
+}
+```
+
 ```
 $('#meu-form').formAjax({
     func_antes: function () {
@@ -41,7 +55,14 @@ $('#meu-form').formAjax({
 ### func_depois
 function default null
 
-Função a ser executada após o submit do formulário. Recebe como parâmetro o retorno do submit, possibilitando o tratamento e exibição do retorno. Não precisa retornar nada.
+Função a ser executada após o submit do formulário. Recebe como primeiro parâmetro o retorno do submit, possibilitando o tratamento e exibição do retorno. O segundo parâmetro que essa função recebe é o DOM do seu formulário como parâmetro. Não precisa retornar nada.
+
+Exemplo de função 'func_depois':
+```
+function (retorno, form) {
+    /* Aqui eu faço o que eu quiser com o retorno e o DOM do form */
+}
+```
 
 ```
 $('#meu-form').formAjax({

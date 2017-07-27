@@ -1,6 +1,6 @@
 /** @preserve
  * jquery.formajax.plugin.js
- * @version: v1.17.07
+ * @version: v1.17.07-r1
  * @author: Diego Lepera
  *
  * Created by Diego Lepera on 2017-07-20. Please report any bug at
@@ -198,7 +198,7 @@
                     retorno = fForm.tratarResposta(retorno);
 
                     if (typeof configs.func_depois === 'function') {
-                        return configs.func_depois.apply(this, [retorno]);
+                        return configs.func_depois.apply(this, [retorno, $form.get(0)]);
                     } else {
                         console.warn('[Plugin $.fn.formAjax] Considere utilizar o plugin $.mostrarMsg para melhorar a experiência do usuário ao receber a resposta do submit.');
                         console.log(retorno);
@@ -368,7 +368,7 @@
                      * Executar a função func_antes, simulando o evento beforesubmit.
                      * Se ela retornar false, o submit será interrompido.
                      */
-                    if (typeof configs.func_antes === 'function' && !configs.func_antes.apply()) {
+                    if (typeof configs.func_antes === 'function' && !configs.func_antes.apply(this, [this])) {
                         return false;
                     } // Fim if
 

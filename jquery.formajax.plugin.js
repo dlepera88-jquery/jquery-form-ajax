@@ -33,10 +33,10 @@
  * Copyright (c) 2017 Diego Lepera http://diegolepera.xyz/
  */
 
- // Verificar se o jQuery foi inicializado
- if (jQuery === undefined) {
-     console.warn('[Plugin $.fn.formAjax] O jQuery ainda não foi inciado.\nPara utilizar esse plugin é necessário inicializar o jQuery antes.');
- } // Fim if
+// Verificar se o jQuery foi inicializado
+if (jQuery === undefined) {
+    console.warn('[Plugin $.fn.formAjax] O jQuery ainda não foi inciado.\nPara utilizar esse plugin é necessário inicializar o jQuery antes.');
+} // Fim if
 
 (function ($) {
     /**
@@ -367,7 +367,8 @@
                     evt.stopPropagation();
                     evt.preventDefault();
 
-                    configs = configs || evt.data;
+                    // configs = configs || evt.data;
+                    configs = $.extend(true, evt.data, configs);
 
                     /*
                      * Executar a função func_antes, simulando o evento beforesubmit.

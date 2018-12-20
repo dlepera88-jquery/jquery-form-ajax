@@ -13,20 +13,22 @@ Esse plugin necessita do jQuery (https://jquery.com/).
 
 ## Opções
 ### validar_invisiveis
-boolean default false
+`boolean default false`
 
 Define se o plugin deve permitir a validação dos controles do formulário que não sejam visíveis. Quando false, desativa os campos invisíveis para evitar a validação.
 
 **ATENÇÃO**: essa funcionalidade é incluída no evento click do botão submit. Caso o formulário não tenha um botão submit, essa configuração não funcionará.
 
 ```javascript
-$('#meu-form').formAjax({validar_invisiveis:true});
+var $meu_form = $('#meu-form');
 
-$('#meu-form').formAjax({validar_invisiveis:false});
+$meu_form.formAjax({validar_invisiveis:true});
+
+$meu_form.formAjax({validar_invisiveis:false});
 ```
 
 ### func_antes
-function default null
+`function default null`
 
 Função a ser executada antes do submit do form. Ela simula o comportamento do antigo evento beforesubmit. Se ela retornar false, interrompe o submit do formulário.
 
@@ -53,7 +55,7 @@ $('#meu-form').formAjax({
 ```
 
 ### func_depois
-function default null
+`function default null`
 
 Função a ser executada após o submit do formulário. Recebe como primeiro parâmetro o retorno do submit, possibilitando o tratamento e exibição do retorno. O segundo parâmetro que essa função recebe é o DOM do seu formulário como parâmetro. Não precisa retornar nada.
 
@@ -102,9 +104,9 @@ $('#btn-alternativo').on('click', function () {
 ### Incluindo validação adicional em um determinado campo
 Para incluir uma validação adicional em um determinado campo, deve-se utilizar o parâmetro data-vld-func em conjunto com data-vld-msg, onde:
 
-**data-vld-func** deve receber o nome da função a ser utilizada para a validação. Essa função deve retornar um valor booleano e sempre receberá o valor do campo como parâmetro.
+`data-vld-func` deve receber o nome da função a ser utilizada para a validação. Essa função deve retornar um valor booleano e sempre receberá o valor do campo como parâmetro.
 
-**data-vld-msg** deve receber a mensagem que deve ser exibida ao usuário caso o campo não passe na validação.
+data-vld-msg` deve receber a mensagem que deve ser exibida ao usuário caso o campo não passe na validação.
 
 No exemplo abaixo, valido se o campo foi preenchido com um número par:
 

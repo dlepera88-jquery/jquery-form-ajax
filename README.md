@@ -19,7 +19,7 @@ Define se o plugin deve permitir a validação dos controles do formulário que 
 
 **ATENÇÃO**: essa funcionalidade é incluída no evento click do botão submit. Caso o formulário não tenha um botão submit, essa configuração não funcionará.
 
-```
+```javascript
 $('#meu-form').formAjax({validar_invisiveis:true});
 
 $('#meu-form').formAjax({validar_invisiveis:false});
@@ -33,7 +33,7 @@ Função a ser executada antes do submit do form. Ela simula o comportamento do 
 Obs: Essa função recebe o DOM do seu formulário como parâmetro.
 
 Exemplo de função 'func_antes':
-```
+```javascript
 function (form) {
     /* Aqui eu faço o que eu quiser com o DOM do form e / ou aplico a lógica que eu precisar */
 
@@ -44,7 +44,7 @@ function (form) {
 }
 ```
 
-```
+```javascript
 $('#meu-form').formAjax({
     func_antes: function () {
         return confirm('Tem certeza que deseja enviar essas informações?');
@@ -58,13 +58,13 @@ function default null
 Função a ser executada após o submit do formulário. Recebe como primeiro parâmetro o retorno do submit, possibilitando o tratamento e exibição do retorno. O segundo parâmetro que essa função recebe é o DOM do seu formulário como parâmetro. Não precisa retornar nada.
 
 Exemplo de função 'func_depois':
-```
+```javascript
 function (retorno, form) {
     /* Aqui eu faço o que eu quiser com o retorno e o DOM do form */
 }
 ```
 
-```
+```javascript
 $('#meu-form').formAjax({
     func_depois: function (retorno) {
         alert(retorno);
@@ -78,7 +78,7 @@ $('#meu-form').formAjax({
 Esse plugin permite que as informações sejam submetidas para diferentes actions com diferentes configurações. Essa funcionalidade simula a especificação do HTML5 para buttons mas que funciona apenas em navegadores muito recentes e não foi completamente imlementada ainda:
 https://www.w3schools.com/tags/att_button_formaction.asp
 
-```
+```html
 <form id="meu-form" action="pagina1.php" method="post">
     <input type="text" name="infos required"/>
 
@@ -87,7 +87,6 @@ https://www.w3schools.com/tags/att_button_formaction.asp
 </form>
 
 <script>
-//<![CDATA[
 // Aqui eu configuro o formulário para usar o plugin
 $('#meu-form').formAjax();
 
@@ -97,7 +96,6 @@ $('#btn-alternativo').on('click', function () {
         acao: 'pagina2.php'
     });
 });
-//]]>
 </script>
 ```
 
@@ -110,7 +108,7 @@ Para incluir uma validação adicional em um determinado campo, deve-se utilizar
 
 No exemplo abaixo, valido se o campo foi preenchido com um número par:
 
-```
+```html
 <form id="meu-form" action="pagina1.php" method="post">
     <input type="number" name="numero_par" min="0" max="100" data-vld-func="validaNumeroPar" data-vld-msg="O número digitado não é um número par."/>
 
@@ -118,7 +116,6 @@ No exemplo abaixo, valido se o campo foi preenchido com um número par:
 </form>
 
 <script>
-//<![CDATA[
 // Primeiro eu configuro o meu formulário para utilizar o plugin
 $('#meu-form').formAjax();
 
@@ -126,7 +123,6 @@ $('#meu-form').formAjax();
 function validaNumeroPar(numero) {
     return numero % 2 === 0;
 }
-//]]>
 </script>
 ```
 

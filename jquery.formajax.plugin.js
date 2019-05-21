@@ -199,11 +199,11 @@ if (jQuery === undefined) {
                 cache: false,
                 processData: qtde_upload === 0,
                 contentType: qtde_upload > 0 ? false : 'application/x-www-form-urlencoded',
-                success: function (retorno) {
+                success: function (retorno, status, xhr) {
                     retorno = fForm.tratarResposta(retorno);
 
                     if (typeof configs.func_depois === 'function') {
-                        return configs.func_depois.apply(this, [retorno, $form.get(0)]);
+                        return configs.func_depois.apply(this, [retorno, $form.get(0), xhr]);
                     } else {
                         console.warn('[Plugin $.fn.formAjax] Considere utilizar o plugin $.mostrarMsg para melhorar a experiência do usuário ao receber a resposta do submit.');
                         console.log(retorno);
